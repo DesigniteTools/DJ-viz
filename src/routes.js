@@ -4,8 +4,8 @@ const routes = [
   {
     path: "/",
     name: "Dashboard",
-    component: Dashboard,
-  },
+    component: Dashboard
+  }
 ];
 
 export default routes;
