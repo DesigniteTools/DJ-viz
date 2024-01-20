@@ -1,7 +1,10 @@
+// Dashboard page
+
 import React, { useState } from "react";
 import "./styles.css";
 import { Button } from "@mui/material";
 import Papa from "papaparse";
+// import { useNavigate } from "react-router";
 
 export default function Dashboard() {
   const [csvFilesData, setCsvFilesData] = useState({});
@@ -22,6 +25,7 @@ export default function Dashboard() {
             header: true
           });
         }
+        // navigate("/visualization");
       }
     } catch (error) {
       console.error("Error reading files:", error);
@@ -30,8 +34,6 @@ export default function Dashboard() {
 
   function handleFileRead(fileName, fileData) {
     const trimmedFileName = fileName.endsWith(".csv") ? fileName.slice(0, -4) : fileName;
-    // console.log("File Name:", fileName);
-    // console.log("Parsed File Data:", fileData);
 
     // Update the state with a new object using the file name as the key
     setCsvFilesData((prevData) => ({

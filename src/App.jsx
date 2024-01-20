@@ -1,6 +1,9 @@
+// App component
+
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import RoutesList from "./routes";
+import NavBar from "./components/NavBar";
 
 export default function App() {
   const renderRoutes = () => {
@@ -14,8 +17,11 @@ export default function App() {
   };
 
   return (
-    <div className="App">
-      <Routes>{renderRoutes()}</Routes>
-    </div>
+    <>
+      <NavBar />
+      <div className="App">
+        <Routes>{renderRoutes()}</Routes>
+      </div>
+    </>
   );
 }
