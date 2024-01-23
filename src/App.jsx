@@ -4,6 +4,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import RoutesList from "./routes";
 import NavBar from "./components/NavBar";
+import { CsvDataProvider } from "./context";
 
 export default function App() {
   const renderRoutes = () => {
@@ -18,10 +19,12 @@ export default function App() {
 
   return (
     <>
-      <NavBar />
-      <div className="App">
-        <Routes>{renderRoutes()}</Routes>
-      </div>
+      <CsvDataProvider>
+        <NavBar />
+        <div className="App">
+          <Routes>{renderRoutes()}</Routes>
+        </div>
+      </CsvDataProvider>
     </>
   );
 }

@@ -1,18 +1,21 @@
-// Dashboard page
-
-import React, { useState } from "react";
+// Dashboard.js
+import React from "react";
 import "./styles.css";
 import { Button } from "@mui/material";
 import Papa from "papaparse";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
+import { useCsvData } from "../../context";
 
 export default function Dashboard() {
-  const [csvFilesData, setCsvFilesData] = useState({});
+  const navigate = useNavigate();
+  const { updateCsvData } = useCsvData();
 
   async function readCSVFiles() {
     try {
       const directoryHandle = await window.showDirectoryPicker();
       const entries = await directoryHandle.values();
+
+      const newData = {};
 
       for await (const entry of entries) {
         if (entry.name.endsWith(".csv")) {
@@ -21,28 +24,25 @@ export default function Dashboard() {
 
           // Use PapaParse to parse CSV data
           Papa.parse(fileText, {
-            complete: (fileData) => handleFileRead(entry.name, fileData),
+            complete: (fileData) => handleFileRead(entry.name, fileData, newData),
             header: true
           });
         }
-        // navigate("/visualization");
       }
+
+      updateCsvData(newData);
+      navigate("/visualization");
     } catch (error) {
       console.error("Error reading files:", error);
     }
   }
 
-  function handleFileRead(fileName, fileData) {
+  function handleFileRead(fileName, fileData, newData) {
     const trimmedFileName = fileName.endsWith(".csv") ? fileName.slice(0, -4) : fileName;
 
     // Update the state with a new object using the file name as the key
-    setCsvFilesData((prevData) => ({
-      ...prevData,
-      [trimmedFileName]: fileData.data
-    }));
+    newData[trimmedFileName] = fileData.data;
   }
-
-  console.log(csvFilesData);
 
   return (
     <div className="dashboard">

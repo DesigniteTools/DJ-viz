@@ -1,26 +1,26 @@
-// Visualization page.
-
 import { useState, useEffect } from "react";
 import "./styles.css";
-import { data } from "../../mock";
 import { MenuItem, Select, FormControl, InputLabel } from "@mui/material";
+import { useCsvData } from "../../context";
 
 export default function Visualization() {
   const [selectedOption, setSelectedOption] = useState("");
   const [dropdownOptions, setDropdownOptions] = useState([]);
+  const { csvData } = useCsvData();
 
   useEffect(() => {
-    const dropdownOptions = Object.keys(data[0]);
+    const dropdownOptions = Object.keys(csvData);
     setDropdownOptions(dropdownOptions);
-  }, []);
+  }, [csvData]);
 
-  /**
-   * Handles the change event of the dropdown option.
-   *
-   * @param {Object} event - The change event.
-   */
   const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+    const selectedFile = event.target.value;
+    setSelectedOption(selectedFile);
+
+    // Assuming csvData[selectedFile] contains the data for the selected file
+    const selectedFileData = csvData[selectedFile];
+    console.log(selectedFileData);
+    // Use the selectedFileData as needed
   };
 
   return (
