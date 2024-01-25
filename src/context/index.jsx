@@ -1,7 +1,7 @@
 // Context for storing the CSV data
 import { createContext, useContext, useState } from "react";
 
-const CsvDataContext = createContext();
+const DataContext = createContext();
 
 export function CsvDataProvider({ children }) {
   const [csvData, setCsvData] = useState({});
@@ -10,11 +10,9 @@ export function CsvDataProvider({ children }) {
     setCsvData(newData);
   }
 
-  return (
-    <CsvDataContext.Provider value={{ csvData, updateCsvData }}>{children}</CsvDataContext.Provider>
-  );
+  return <DataContext.Provider value={{ csvData, updateCsvData }}>{children}</DataContext.Provider>;
 }
 
 export function useCsvData() {
-  return useContext(CsvDataContext);
+  return useContext(DataContext);
 }
