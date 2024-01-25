@@ -25,7 +25,8 @@ export default function Dashboard() {
           // Use PapaParse to parse CSV data
           Papa.parse(fileText, {
             complete: (fileData) => handleFileRead(entry.name, fileData, newData),
-            header: true
+            header: true,
+            skipEmptyLines: true
           });
         }
       }
