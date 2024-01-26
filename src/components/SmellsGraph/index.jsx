@@ -1,20 +1,17 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
-export default function SmellsGraph(props) {
-  // Extract smell data from props
-  console.log(props.data);
-  const dataInArray = [props.data];
-  console.log("projectData", dataInArray);
-  const smellData = dataInArray.map((projectData) => {
-    return {
-      ProjectName: projectData.ArchitectureSmells[0]["Project Name"],
-      ArchitectureSmells: projectData.ArchitectureSmells.length,
-      ImplementationSmells: projectData.ImplementationSmells.length,
-      DesignSmells: projectData.DesignSmells.length,
-      TestabilitySmells: projectData.TestabilitySmells.length,
-      TestSmells: projectData.TestSmells.length
-    };
-  });
+export default function SmellsGraph({ data: projectData }) {
+  const smellData = {
+    ProjectName: projectData?.ArchitectureSmells
+      ? projectData?.ArchitectureSmells[0]["Project Name"]
+      : "Project Name",
+    ArchitectureSmells: projectData?.ArchitectureSmells?.length || 0,
+    ImplementationSmells: projectData?.ImplementationSmells?.length || 0,
+    DesignSmells: projectData?.DesignSmells?.length || 0,
+    TestabilitySmells: projectData?.TestabilitySmells?.length || 0,
+    TestSmells: projectData?.TestSmells?.length || 0
+  };
+
   console.log(smellData);
 
   return (
@@ -23,7 +20,7 @@ export default function SmellsGraph(props) {
       <BarChart
         width={800}
         height={400}
-        data={smellData}
+        data={[smellData]}
         margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="ProjectName" />

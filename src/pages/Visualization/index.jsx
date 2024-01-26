@@ -1,15 +1,27 @@
 import "./styles.css";
-// import { useState, useEffect } from "react";
+import { useEffect } from "react";
 // import { MenuItem, Select, FormControl, InputLabel } from "@mui/material";
 import { useCsvData } from "../../context";
 // import CustomCard from "../../components/CustomCard";
 import SmellsGraph from "../../components/SmellsGraph";
+import { useNavigate } from "react-router";
 
 export default function Visualization() {
   // const [selectedOption, setSelectedOption] = useState("");
   // const [dropdownOptions, setDropdownOptions] = useState([]);
+  // const [chartData, setChartData] = useState({});
   const { csvData } = useCsvData();
-  // console.log(csvData);
+  const checkCsvData = Object.keys(csvData).length === 0;
+  console.log(checkCsvData);
+  // console.log(Object.keys(csvData));
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (checkCsvData) {
+      navigate("/");
+    }
+  }, [csvData]);
 
   // useEffect(() => {
   //   const dropdownOptions = Object.keys(csvData);
