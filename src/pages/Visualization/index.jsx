@@ -38,6 +38,10 @@ export default function Visualization() {
   //   console.log(selectedFileData);
   // };
 
+  window.onbeforeunload = function () {
+    return "You will be redirected to the main page. Do you want to reload?";
+  };
+
   return (
     <div className="visualization">
       <h1 style={{ textAlign: "center" }}>Visualization</h1>
