@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 
 const DataContext = createContext();
 
-export function CsvDataProvider({ children }) {
+export function DataProvider({ children }) {
   const [csvData, setCsvData] = useState({});
 
   function updateCsvData(newData) {

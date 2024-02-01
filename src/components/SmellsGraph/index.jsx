@@ -16,7 +16,7 @@ export default function SmellsGraph({ data: projectData }) {
 
   return (
     <div>
-      <h2>Number of Smells in Each Category</h2>
+      <h2 style={{ textAlign: "center" }}>Number of Smells in Each Category</h2>
       <BarChart
         width={800}
         height={400}

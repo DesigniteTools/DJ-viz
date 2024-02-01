@@ -4,7 +4,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import RoutesList from "./routes";
 import NavBar from "./components/NavBar";
-import { CsvDataProvider } from "./context";
+import { DataProvider } from "./context";
 
 export default function App() {
   const renderRoutes = () => {
@@ -19,12 +19,12 @@ export default function App() {
 
   return (
     <>
-      <CsvDataProvider>
+      <DataProvider>
         <NavBar />
         <div className="App">
           <Routes>{renderRoutes()}</Routes>
         </div>
-      </CsvDataProvider>
+      </DataProvider>
     </>
   );
 }
