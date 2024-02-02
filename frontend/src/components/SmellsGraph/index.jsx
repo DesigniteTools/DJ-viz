@@ -12,8 +12,6 @@ export default function SmellsGraph({ data: projectData }) {
     TestSmells: projectData?.TestSmells?.length || 0
   };
 
-  console.log(smellData);
-
   return (
     <div>
       <h2 style={{ textAlign: "center" }}>Number of Smells in Each Category</h2>

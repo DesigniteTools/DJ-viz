@@ -18,13 +18,11 @@ export default function App() {
   };
 
   return (
-    <>
-      <DataProvider>
-        <NavBar />
-        <div className="App">
-          <Routes>{renderRoutes()}</Routes>
-        </div>
-      </DataProvider>
-    </>
+    <DataProvider>
+      <NavBar />
+      <div className="App">
+        <Routes>{renderRoutes()}</Routes>
+      </div>
+    </DataProvider>
   );
 }

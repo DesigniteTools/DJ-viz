@@ -12,10 +12,8 @@ const port = 3001;
 app.get("/csvData", (req, res) => {
   try {
     const folderPath = req.query.folderPath;
-    // console.log("Requested Folder Path:", folderPath);
 
     const directoryPath = path.join(folderPath);
-    // console.log("Resolved Directory Path:", directoryPath);
 
     const files = fs.readdirSync(directoryPath);
 
