@@ -1,9 +1,10 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import "./styles.css";
 
 export default function PiChart({ data, title, colors }) {
   return (
-    <div>
-      <h2 style={{ textAlign: "center" }}>{title}</h2>
+    <div className="pi-chart">
+      <h2>{title}</h2>
       <PieChart width={400} height={400}>
         <Pie
           data={data}

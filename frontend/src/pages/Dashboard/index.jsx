@@ -18,7 +18,7 @@ export default function Dashboard() {
   };
 
   const handleSubmit = () => {
-    Cookies.set("path", folderPath);
+    Cookies.set("path", folderPath, { expires: 1 });
     const url = `http://localhost:3001/csvData?folderPath=${folderPath}`;
 
     axios
@@ -59,14 +59,14 @@ export default function Dashboard() {
         </Button>
       </div>
       <div className="toaster">
-        <Snackbar open={openAlert} autoHideDuration={1500} onClose={handleCloseAlert}>
+        <Snackbar open={openAlert} autoHideDuration={2000} onClose={handleCloseAlert}>
           <Alert
             onClose={handleCloseAlert}
             severity="error"
             variant="filled"
             className="toaster"
             sx={{ position: "fixed", top: 10, right: 10, zIndex: 9999 }}>
-            Error fetching files.
+            Error fetching files or invalid input.
           </Alert>
         </Snackbar>
       </div>

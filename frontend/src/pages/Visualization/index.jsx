@@ -53,13 +53,27 @@ export default function Visualization() {
   return (
     <div className="visualization">
       <h1 style={{ textAlign: "center" }}>Visualization</h1>
-      <div className="dropdown">
-        <SmellsGraph data={csvData} />
-        <PiChart data={architectureSmellCount} title="Architecture Smell" colors={colors} />
-        <PiChart data={designSmellCount} title="Design Smell" colors={colors} />
-        <PiChart data={testSmellCount} title="Test Smell" colors={colors} />
-        <PiChart data={testabilitySmellCount} title="Testability Smell" colors={colors} />
-        <PiChart data={implementationSmellCount} title="Implmentation Smell" colors={colors} />
+      <div className="graphs">
+        <div className="combined-smells">
+          <SmellsGraph data={csvData} />
+        </div>
+        <div className="smell-graph">
+          <div className="row">
+            <div className="column">
+              <PiChart data={architectureSmellCount} title="Architecture Smell" colors={colors} />
+              <PiChart data={designSmellCount} title="Design Smell" colors={colors} />
+              <PiChart data={testSmellCount} title="Test Smell" colors={colors} />
+            </div>
+            <div className="column">
+              <PiChart data={testabilitySmellCount} title="Testability Smell" colors={colors} />
+              <PiChart
+                data={implementationSmellCount}
+                title="Implmentation Smell"
+                colors={colors}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

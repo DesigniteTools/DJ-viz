@@ -1,10 +1,10 @@
 {
-  "name": "backend",
+  "name": "smells-viz-backend",
   "version": "1.0.0",
   "description": "server for smellviz",
   "main": "./src/index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "start": "nodemon index.js",
     "lint": "eslint ."
   },
   "author": "Kevin Panchal",

@@ -1,5 +1,5 @@
 {
-  "name": "smells-viz",
+  "name": "smells-viz-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
