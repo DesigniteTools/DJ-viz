@@ -1,13 +1,10 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
-// import { MenuItem, Select, FormControl, InputLabel } from "@mui/material";
-// import { useCsvData } from "../../context";
-// import CustomCard from "../../components/CustomCard";
 import SmellsGraph from "../../components/SmellsGraph";
-// import { useNavigate } from "react-router";
 import PiChart from "../../components/PiChart";
 import Cookies from "js-cookie";
 import axios from "axios";
+import BubbleChart from "../../components/BubbleChart";
 
 export default function Visualization() {
   const [csvData, setCsvData] = useState({});
@@ -20,11 +17,13 @@ export default function Visualization() {
     });
   }, []);
 
-  const architectureSmellsData = csvData.ArchitectureSmells;
-  const designSmellData = csvData.DesignSmells;
-  const testSmellData = csvData.TestSmells;
-  const implementationSmellData = csvData.ImplementationSmells;
-  const testabilitySmellData = csvData.TestabilitySmells;
+  console.log("csvData", csvData);
+
+  const architectureSmellsData = csvData?.ArchitectureSmells;
+  const designSmellData = csvData?.DesignSmells;
+  const testSmellData = csvData?.TestSmells;
+  const implementationSmellData = csvData?.ImplementationSmells;
+  const testabilitySmellData = csvData?.TestabilitySmells;
 
   const architectureSmellCount = aggregateData(architectureSmellsData, "Architecture Smell");
   const designSmellCount = aggregateData(designSmellData, "Design Smell");
@@ -48,29 +47,36 @@ export default function Visualization() {
     return Object.entries(aggregated).map(([name, value]) => ({ name, value }));
   }
 
-  const colors = ["#8884d8", "#82ca9d", "#ffc658", "#FF5733", "#33FFC7"];
-
   return (
     <div className="visualization">
       <h1 style={{ textAlign: "center" }}>Visualization</h1>
       <div className="graphs">
-        <div className="combined-smells">
+        <div className="bar-graph">
           <SmellsGraph data={csvData} />
+        </div>
+        <div className="bubble-graph">
+          <BubbleChart data={csvData} />
         </div>
         <div className="smell-graph">
           <div className="row">
             <div className="column">
-              <PiChart data={architectureSmellCount} title="Architecture Smell" colors={colors} />
-              <PiChart data={designSmellCount} title="Design Smell" colors={colors} />
-              <PiChart data={testSmellCount} title="Test Smell" colors={colors} />
+              <div className="item">
+                <PiChart data={architectureSmellCount} title="Architecture Smell" />
+              </div>
+              <div className="item">
+                <PiChart data={designSmellCount} title="Design Smell" />
+              </div>
+              <div className="item">
+                <PiChart data={testSmellCount} title="Test Smell" />
+              </div>
             </div>
             <div className="column">
-              <PiChart data={testabilitySmellCount} title="Testability Smell" colors={colors} />
-              <PiChart
-                data={implementationSmellCount}
-                title="Implmentation Smell"
-                colors={colors}
-              />
+              <div className="item">
+                <PiChart data={testabilitySmellCount} title="Testability Smell" />
+              </div>
+              <div className="item">
+                <PiChart data={implementationSmellCount} title="Implmentation Smell" />
+              </div>
             </div>
           </div>
         </div>

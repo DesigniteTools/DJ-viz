@@ -44,7 +44,7 @@ export default function Dashboard() {
   return (
     <div className="dashboard">
       <h1 style={{ textAlign: "center" }}>Smells Viz</h1>
-      <div className="folder-input">
+      <div className="folder-input center">
         <TextField
           className="text-field"
           label="Folder Path"
@@ -53,7 +53,7 @@ export default function Dashboard() {
           onChange={(e) => setFolderPath(e.target.value)}
         />
       </div>
-      <div className="submit-button">
+      <div className="submit-button center">
         <Button variant="contained" color="success" onClick={handleSubmit}>
           Submit
         </Button>

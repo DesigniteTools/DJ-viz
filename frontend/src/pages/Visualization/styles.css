@@ -11,3 +11,10 @@
   flex-direction: column;
   align-content: flex-start;
 }
+
+.item {
+  padding: 0.5rem;
+  margin: 1.5rem;
+  border-radius: 2rem;
+  box-shadow: 10px 10px 20px -8px rgba(0,0,0,0.75);
+}

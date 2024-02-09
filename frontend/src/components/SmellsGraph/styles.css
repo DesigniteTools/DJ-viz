@@ -1,7 +1,1 @@
-.smells-graph{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow-x: auto;
-}
+@import url("../../App.css");
