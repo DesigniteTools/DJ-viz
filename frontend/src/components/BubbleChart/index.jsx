@@ -14,7 +14,7 @@ export default function BubbleChart({ data }) {
   const chartData =
     data.MethodMetrics && data.MethodMetrics.length > 0
       ? data.MethodMetrics.map((item) => ({
-          name: item["Type Name"],
+          name: item["Type Name"] + item["Method Name"] + item["Line no"],
           LOC: parseInt(item.LOC),
           CC: parseInt(item.CC),
           PC: parseInt(item.PC)
@@ -30,7 +30,10 @@ export default function BubbleChart({ data }) {
           <YAxis type="number" dataKey="PC" name="PC" unit="" />
           <ZAxis type="number" dataKey="CC" range={[40, 700]} name="CC" unit="" />
           <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-          <Scatter name="Method Metrics" data={chartData} fill="#2f4b7c" />
+          {/* <Scatter name="Method Metrics" data={chartData} fill="#2f4b7c" /> */}
+          {chartData.map((item) => (
+            <Scatter key={item.name} name="Method Metrics" data={[item]} fill="#2f4b7c" />
+          ))}
         </ScatterChart>
       </ResponsiveContainer>
     </div>

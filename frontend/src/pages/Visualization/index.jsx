@@ -17,7 +17,7 @@ export default function Visualization() {
     });
   }, []);
 
-  console.log("csvData", csvData);
+  // console.log("csvData", csvData);
 
   const architectureSmellsData = csvData?.ArchitectureSmells;
   const designSmellData = csvData?.DesignSmells;
