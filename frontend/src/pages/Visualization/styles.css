@@ -18,3 +18,18 @@
   border-radius: 2rem;
   box-shadow: 10px 10px 20px -8px rgba(0,0,0,0.75);
 }
+
+.type-metrics {
+  display: flex;
+  margin: 0rem 2rem;
+}
+
+.radio-buttons{
+  width: 20%;
+}
+
+.scatter-graph{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}

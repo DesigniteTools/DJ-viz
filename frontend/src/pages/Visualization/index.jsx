@@ -4,10 +4,15 @@ import SmellsGraph from "../../components/SmellsGraph";
 import PiChart from "../../components/PiChart";
 import Cookies from "js-cookie";
 import axios from "axios";
-import BubbleChart from "../../components/BubbleChart";
+// import BubbleChart from "../../components/BubbleChart";
+import RadioButtonList from "../../components/RadioButtonList";
+import { getMetricKeys, aggregateData, getScatterData } from "../../utils/helper";
+import ScatterGraph from "../../components/ScatterGraph";
 
 export default function Visualization() {
   const [csvData, setCsvData] = useState({});
+  // eslint-disable-next-line no-unused-vars
+  const [selectedOption, setSelectedOption] = useState("NOF");
 
   useEffect(() => {
     const folderPath = Cookies.get("path");
@@ -17,7 +22,13 @@ export default function Visualization() {
     });
   }, []);
 
-  // console.log("csvData", csvData);
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+  };
+
+  const metricKeys = getMetricKeys(csvData);
+
+  const scatterData = getScatterData(csvData, selectedOption);
 
   const architectureSmellsData = csvData?.ArchitectureSmells;
   const designSmellData = csvData?.DesignSmells;
@@ -31,22 +42,6 @@ export default function Visualization() {
   const implementationSmellCount = aggregateData(implementationSmellData, "Implementation Smell");
   const testabilitySmellCount = aggregateData(testabilitySmellData, "Testability Smell");
 
-  function aggregateData(data, key) {
-    if (!data || data.length === 0) {
-      return [];
-    }
-    const aggregated = {};
-    data.forEach((entry) => {
-      const value = entry[key];
-      if (!aggregated[value]) {
-        aggregated[value] = 1;
-      } else {
-        aggregated[value]++;
-      }
-    });
-    return Object.entries(aggregated).map(([name, value]) => ({ name, value }));
-  }
-
   return (
     <div className="visualization">
       <h1 style={{ textAlign: "center" }}>Visualization</h1>
@@ -54,9 +49,17 @@ export default function Visualization() {
         <div className="bar-graph">
           <SmellsGraph data={csvData} />
         </div>
-        <div className="bubble-graph">
-          <BubbleChart data={csvData} />
+        <div className="type-metrics">
+          <div className="radio-buttons">
+            <RadioButtonList values={metricKeys} onOptionSelect={handleOptionSelect} />
+          </div>
+          <div className="scatter-graph">
+            <ScatterGraph data={scatterData} option={selectedOption} />
+          </div>
         </div>
+        {/* <div className="bubble-graph">
+          <BubbleChart data={csvData} />
+        </div> */}
         <div className="smell-graph">
           <div className="row">
             <div className="column">
