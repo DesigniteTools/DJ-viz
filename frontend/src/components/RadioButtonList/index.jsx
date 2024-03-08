@@ -1,4 +1,5 @@
 import { FormControl, FormLabel, Radio, RadioGroup, FormControlLabel } from "@mui/material";
+import "./styles.css";
 
 export default function RadioButtonList({ values, onOptionSelect }) {
   const handleOptionChange = (event) => {
@@ -8,8 +9,11 @@ export default function RadioButtonList({ values, onOptionSelect }) {
   return (
     <div className="bullet-list">
       <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label">Type Metrics</FormLabel>
+        <FormLabel sx={{ alignSelf: "center" }} id="demo-radio-buttons-group-label">
+          Type Metrics
+        </FormLabel>
         <RadioGroup
+          row
           aria-labelledby="demo-radio-buttons-group-label"
           defaultValue={"NOF"}
           name="radio-buttons-group"

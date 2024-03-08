@@ -6,13 +6,40 @@ import Cookies from "js-cookie";
 import axios from "axios";
 // import BubbleChart from "../../components/BubbleChart";
 import RadioButtonList from "../../components/RadioButtonList";
-import { getMetricKeys, aggregateData, getScatterData } from "../../utils/helper";
+import { getMetricKeys, aggregateData, getScatterData, getTreeMapData } from "../../utils/helper";
 import ScatterGraph from "../../components/ScatterGraph";
+import TreeGraph from "../../components/TreeGraph";
+import { Slider } from "@mui/material";
 
 export default function Visualization() {
   const [csvData, setCsvData] = useState({});
-  // eslint-disable-next-line no-unused-vars
   const [selectedOption, setSelectedOption] = useState("NOF");
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(100);
+  const [value, setValue] = useState([0, 100]);
+
+  useEffect(() => {
+    if (csvData && csvData.TypeMetrics && csvData.TypeMetrics.length > 0) {
+      let min = Infinity;
+      let max = -Infinity;
+
+      csvData.TypeMetrics.forEach((type) => {
+        const metricValue = parseFloat(type[selectedOption]);
+        if (!isNaN(metricValue)) {
+          min = Math.min(min, metricValue);
+          max = Math.max(max, metricValue);
+        }
+      });
+
+      setMinValue(min);
+      setMaxValue(max);
+      setValue([min, max]);
+    }
+  }, [csvData, selectedOption]);
+
+  const handleSliderChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   useEffect(() => {
     const folderPath = Cookies.get("path");
@@ -29,6 +56,10 @@ export default function Visualization() {
   const metricKeys = getMetricKeys(csvData);
 
   const scatterData = getScatterData(csvData, selectedOption);
+  // console.log("scattered data", scatterData);
+
+  const treeData = getTreeMapData(csvData, selectedOption);
+  // console.log("treee data", treeData);
 
   const architectureSmellsData = csvData?.ArchitectureSmells;
   const designSmellData = csvData?.DesignSmells;
@@ -49,12 +80,28 @@ export default function Visualization() {
         <div className="bar-graph">
           <SmellsGraph data={csvData} />
         </div>
-        <div className="type-metrics">
-          <div className="radio-buttons">
-            <RadioButtonList values={metricKeys} onOptionSelect={handleOptionSelect} />
-          </div>
+        <div className="radio-buttons">
+          <RadioButtonList values={metricKeys} onOptionSelect={handleOptionSelect} />
+        </div>
+        <div className="tree-graph-container">
           <div className="scatter-graph">
             <ScatterGraph data={scatterData} option={selectedOption} />
+          </div>
+          <div className="tree-graph">
+            {treeData && <TreeGraph data={treeData} value={value} />}
+          </div>
+          <div className="matrics-slider">
+            <Slider
+              orientation="vertical"
+              value={value}
+              onChange={handleSliderChange}
+              valueLabelDisplay="auto"
+              getAriaLabel={() => "Metrics range"}
+              min={minValue}
+              max={maxValue}
+              step={0.1}
+              aria-labelledby="range-slider"
+            />
           </div>
         </div>
         {/* <div className="bubble-graph">

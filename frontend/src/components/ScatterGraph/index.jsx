@@ -22,13 +22,13 @@ export default function ScatterGraph({ data, option }) {
     return null;
   };
   return (
-    <ResponsiveContainer width="80%" height={300}>
+    <ResponsiveContainer width="100%" height={500}>
       <ScatterChart
         margin={{
-          top: 20,
+          top: 10,
           right: 20,
-          bottom: 20,
-          left: 20
+          bottom: 10,
+          left: 10
         }}>
         <CartesianGrid />
         <YAxis type="number" dataKey={option} name={option} />

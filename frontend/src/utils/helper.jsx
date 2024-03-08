@@ -6,7 +6,6 @@ export function getMetricKeys(data) {
         !["Project Name", "Package Name", "Type Name", "File path", "Line no", "LOC"].includes(key)
     );
   } else {
-    console.log("TypeMetrics is empty or undefined");
     return [];
   }
 }
@@ -39,4 +38,36 @@ export function getScatterData(csvData, selectedMetric) {
     const metricValue = parseFloat(type[selectedMetric]);
     return { TypeName: typeName, [selectedMetric]: metricValue };
   });
+}
+
+export function getTreeMapData(csvData, selectedMetric) {
+  if (!csvData || !csvData.TypeMetrics || csvData.TypeMetrics.length === 0) {
+    return [];
+  }
+  const treeMapData = [];
+
+  // Iterate over each item in TypeMetrics
+  csvData.TypeMetrics.forEach((item) => {
+    const packageName = item["Package Name"];
+    const typeName = item["Type Name"];
+    const loc = parseInt(item.LOC);
+    const val = parseInt(item[selectedMetric]);
+
+    // Extract last part of the package name
+    const lastPackageNamePart = packageName.split(".").pop();
+
+    // Check if the package already exists in the treeMapData
+    let packageNode = treeMapData.find((node) => node.name === lastPackageNamePart);
+
+    // If package doesn't exist, create a new package node
+    if (!packageNode) {
+      packageNode = { name: lastPackageNamePart, children: [] };
+      treeMapData.push(packageNode);
+    }
+
+    // Add the type node to the children of the package node
+    packageNode.children.push({ name: typeName, size: loc, value: val });
+  });
+
+  return treeMapData;
 }

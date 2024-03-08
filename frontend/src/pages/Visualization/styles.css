@@ -19,17 +19,40 @@
   box-shadow: 10px 10px 20px -8px rgba(0,0,0,0.75);
 }
 
-.type-metrics {
+/* .type-metrics {
   display: flex;
   margin: 0rem 2rem;
-}
+} */
 
-.radio-buttons{
-  width: 20%;
+.radio-buttons {
+  width: 100vw;
 }
 
 .scatter-graph{
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
   width: 100%;
+  margin: 1rem;
+}
+
+.tree-graph {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 1rem;
+}
+
+.tree-graph-container {
+  height: 40rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.matrics-slider {
+  display: flex;
+  width: 10%;
+  height: 20rem;
+  justify-content:center;
+  margin: auto;
 }
