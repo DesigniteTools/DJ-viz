@@ -88,7 +88,7 @@ export default function Visualization() {
             <ScatterGraph data={scatterData} option={selectedOption} />
           </div>
           <div className="tree-graph">
-            {treeData && <TreeGraph data={treeData} value={value} />}
+            {treeData && <TreeGraph data={treeData} value={value} min={minValue} max={maxValue} />}
           </div>
           <div className="matrics-slider">
             <Slider
