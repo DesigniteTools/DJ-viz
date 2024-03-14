@@ -1,65 +1,70 @@
-import { ResponsiveContainer, Treemap, Tooltip } from "recharts";
+import { useEffect, useRef } from "react";
+import * as d3 from "d3";
 
-const COLORS = ["#44ce1b", "#bbdb44", "#f7e379", "#f2a134", "#e51f1f"];
+export default function TreeGraph({ data, range, min, max, option }) {
+  const svgRef = useRef();
 
-function CustomContent(props) {
-  const { depth, x, y, width, height, value, range, min, max } = props;
-  const [minValue, maxValue] = range;
+  useEffect(() => {
+    if (!data) return;
 
-  const calculateColor = (value, minValue, maxValue, min, max) => {
-    const colorRange = max - min;
-    const normalizedValue = (value - min) / colorRange;
-    const colorIndex = Math.floor(normalizedValue * (COLORS.length - 1));
-    return COLORS[colorIndex];
-  };
+    d3.select(svgRef.current).select("svg").remove();
 
-  const color = calculateColor(value, minValue, maxValue, min, max);
-  const isOutOfRange = value < minValue || value > maxValue;
+    const width = 600;
+    const height = 500;
 
-  return (
-    <g>
-      <rect
-        x={x}
-        y={y}
-        width={width}
-        height={height}
-        style={{
-          fill: isOutOfRange ? "#cccccc" : color,
-          stroke: "#fff",
-          strokeWidth: 5 / (depth + 1e-10),
-          strokeOpacity: 2 / (depth + 1e-10)
-        }}
-      />
-    </g>
-  );
-}
+    const treemap = d3.treemap().size([width, height]).padding(2);
 
-export default function TreeGraph({ data, value, min, max }) {
-  const CustomTooltip = ({ active, payload }) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="custom-tooltip">
-          <p className="type-name">{payload[0].payload.name}</p>
-          <p className="label">{`Value: ${payload[0].value}`}</p>
-        </div>
-      );
-    }
-    return null;
-  };
+    const root = d3
+      .hierarchy({ children: data })
+      .sum((d) => d.size)
+      .sort((a, b) => b.value - a.value);
 
-  return (
-    <ResponsiveContainer width="100%" height="80%">
-      <Treemap
-        width={300}
-        height={100}
-        data={data}
-        dataKey="value"
-        aspectRatio={1}
-        stroke="#fff"
-        fill="#8884d8"
-        content={<CustomContent range={value} min={min} max={max} />}>
-        <Tooltip content={<CustomTooltip />} />
-      </Treemap>
-    </ResponsiveContainer>
-  );
+    treemap(root);
+
+    const colorScale = d3
+      .scaleLinear()
+      .domain([min, (min + max) / 4, (min + max) / 2, ((min + max) * 3) / 4, max])
+      .range(["#508104", "#9e8e01", "#f3b800", "#db8200", "#b64201"]);
+
+    const svg = d3
+      .select(svgRef.current)
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append("g");
+
+    svg
+      .selectAll("rect")
+      .data(root.leaves())
+      .enter()
+      .append("rect")
+      .attr("x", (d) => d.x0)
+      .attr("y", (d) => d.y0)
+      .attr("width", (d) => d.x1 - d.x0)
+      .attr("height", (d) => d.y1 - d.y0)
+      .style("fill", (d) => {
+        if (d.data.value < range[0] || d.data.value > range[1]) {
+          return "lightgray";
+        } else {
+          return colorScale(d.data.value);
+        }
+      })
+      .append("title")
+      .text((d) => `${d.data.name}, ${option}: ${d.data.value}`);
+
+    svg
+      .selectAll("text")
+      .data(root.descendants())
+      .enter()
+      .filter((d) => d.depth === 1)
+      .append("text")
+      .attr("x", (d) => d.x0 + 5)
+      .attr("y", (d) => d.y0 + 20)
+      .text((d) => d.data.name)
+      .attr("font-weight", "bold")
+      .attr("font-size", "8px")
+      .attr("fill", "black");
+  }, [data, range, min, max]);
+
+  return <div ref={svgRef}></div>;
 }

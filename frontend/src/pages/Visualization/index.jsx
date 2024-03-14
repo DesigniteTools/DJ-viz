@@ -4,7 +4,6 @@ import SmellsGraph from "../../components/SmellsGraph";
 import PiChart from "../../components/PiChart";
 import Cookies from "js-cookie";
 import axios from "axios";
-// import BubbleChart from "../../components/BubbleChart";
 import RadioButtonList from "../../components/RadioButtonList";
 import { getMetricKeys, aggregateData, getScatterData, getTreeMapData } from "../../utils/helper";
 import ScatterGraph from "../../components/ScatterGraph";
@@ -88,7 +87,15 @@ export default function Visualization() {
             <ScatterGraph data={scatterData} option={selectedOption} />
           </div>
           <div className="tree-graph">
-            {treeData && <TreeGraph data={treeData} value={value} min={minValue} max={maxValue} />}
+            {treeData && (
+              <TreeGraph
+                data={treeData}
+                range={value}
+                min={minValue}
+                max={maxValue}
+                option={selectedOption}
+              />
+            )}
           </div>
           <div className="matrics-slider">
             <Slider
