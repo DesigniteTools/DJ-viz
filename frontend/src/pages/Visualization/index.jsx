@@ -1,14 +1,15 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
 import SmellsGraph from "../../components/SmellsGraph";
-import PiChart from "../../components/PiChart";
+// import PiChart from "../../components/PiChart";
 import Cookies from "js-cookie";
 import axios from "axios";
 import RadioButtonList from "../../components/RadioButtonList";
-import { getMetricKeys, aggregateData, getScatterData, getTreeMapData } from "../../utils/helper";
+import { getMetricKeys, getScatterData, getTreeMapData } from "../../utils/helper";
 import ScatterGraph from "../../components/ScatterGraph";
 import TreeGraph from "../../components/TreeGraph";
 import { Slider } from "@mui/material";
+import PiChartViz from "../../components/PiChartViz";
 
 export default function Visualization() {
   const [csvData, setCsvData] = useState({});
@@ -55,22 +56,20 @@ export default function Visualization() {
   const metricKeys = getMetricKeys(csvData);
 
   const scatterData = getScatterData(csvData, selectedOption);
-  // console.log("scattered data", scatterData);
 
   const treeData = getTreeMapData(csvData, selectedOption);
-  // console.log("treee data", treeData);
 
-  const architectureSmellsData = csvData?.ArchitectureSmells;
-  const designSmellData = csvData?.DesignSmells;
-  const testSmellData = csvData?.TestSmells;
-  const implementationSmellData = csvData?.ImplementationSmells;
-  const testabilitySmellData = csvData?.TestabilitySmells;
+  // const architectureSmellsData = csvData?.ArchitectureSmells;
+  // const designSmellData = csvData?.DesignSmells;
+  // const testSmellData = csvData?.TestSmells;
+  // const implementationSmellData = csvData?.ImplementationSmells;
+  // const testabilitySmellData = csvData?.TestabilitySmells;
 
-  const architectureSmellCount = aggregateData(architectureSmellsData, "Architecture Smell");
-  const designSmellCount = aggregateData(designSmellData, "Design Smell");
-  const testSmellCount = aggregateData(testSmellData, "Test Smell");
-  const implementationSmellCount = aggregateData(implementationSmellData, "Implementation Smell");
-  const testabilitySmellCount = aggregateData(testabilitySmellData, "Testability Smell");
+  // const architectureSmellCount = aggregateData(architectureSmellsData, "Architecture Smell");
+  // const designSmellCount = aggregateData(designSmellData, "Design Smell");
+  // const testSmellCount = aggregateData(testSmellData, "Test Smell");
+  // const implementationSmellCount = aggregateData(implementationSmellData, "Implementation Smell");
+  // const testabilitySmellCount = aggregateData(testabilitySmellData, "Testability Smell");
 
   return (
     <div className="visualization">
@@ -115,7 +114,8 @@ export default function Visualization() {
           <BubbleChart data={csvData} />
         </div> */}
         <div className="smell-graph">
-          <div className="row">
+          <PiChartViz data={csvData} />
+          {/* <div className="row">
             <div className="column">
               <div className="item">
                 <PiChart data={architectureSmellCount} title="Architecture Smell" />
@@ -135,7 +135,7 @@ export default function Visualization() {
                 <PiChart data={implementationSmellCount} title="Implmentation Smell" />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
