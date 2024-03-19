@@ -1,6 +1,6 @@
 import React from "react";
 import { XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, Rectangle } from "recharts";
-import "./styles.css";
+// import "./styles.css";
 
 export default function SmellsGraph({ data }) {
   const categories = [

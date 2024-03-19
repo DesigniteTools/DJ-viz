@@ -7,7 +7,7 @@ export default function RadioButtonList({ values, onOptionSelect }) {
   };
 
   return (
-    <div className="bullet-list">
+    <div className="bullet-list center">
       <FormControl>
         <FormLabel sx={{ alignSelf: "center" }} id="demo-radio-buttons-group-label">
           Type Metrics
