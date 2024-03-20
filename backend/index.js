@@ -15,6 +15,7 @@ app.get("/csvData", (req, res) => {
     const directoryPath = path.join(folderPath);
 
     const files = fs.readdirSync(directoryPath);
+    console.log(files, "files");
 
     const data = {};
 

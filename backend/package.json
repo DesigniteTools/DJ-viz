@@ -2,7 +2,7 @@
   "name": "smells-viz-backend",
   "version": "1.0.0",
   "description": "server for smellviz",
-  "main": "./src/index.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
     "lint": "eslint ."

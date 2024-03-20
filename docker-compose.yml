@@ -1,0 +1,29 @@
+services:
+  back-end:
+    build: 
+      context: backend
+    container_name: backend
+    working_dir: /usr/src/app
+    networks: 
+      - kevin
+    volumes: 
+      - "/Users/kevin/Code/ASDC (CSCI 5308)/The Project/Smells:/usr/src/app/smells"
+    tty: true
+    ports: 
+      - "3001:3001"
+    command: npm run start
+
+  front-end:
+    build: 
+      context: frontend
+    container_name: frontend
+    working_dir: /usr/src/app
+    networks: 
+      - kevin
+    ports: 
+      - "3000:3000"
+    command: npm run start
+
+networks:
+  kevin:
+    driver: bridge
