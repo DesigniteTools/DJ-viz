@@ -7,7 +7,7 @@ import RadioButtonList from "../../components/RadioButtonList";
 import { getMetricKeys, getScatterData, getTreeMapData } from "../../utils/helper";
 import ScatterGraph from "../../components/ScatterGraph";
 import TreeGraph from "../../components/TreeGraph";
-import { Slider } from "@mui/material";
+import { Slider, Paper } from "@mui/material";
 import PiChartViz from "../../components/PiChartViz";
 
 export default function Visualization() {
@@ -62,41 +62,43 @@ export default function Visualization() {
     <div className="visualization">
       <h1 style={{ textAlign: "center" }}>Visualization</h1>
       <div className="graphs">
-        <div className="bar-graph">
+        <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#F9F6EE" }}>
           <SmellsGraph data={csvData} />
-        </div>
-        <div className="radio-buttons">
-          <RadioButtonList values={metricKeys} onOptionSelect={handleOptionSelect} />
-        </div>
-        <div className="tree-graph-container">
-          <div className="scatter-graph">
-            <ScatterGraph data={scatterData} option={selectedOption} />
+        </Paper>
+        <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#F9F6EE" }}>
+          <div className="radio-buttons">
+            <RadioButtonList values={metricKeys} onOptionSelect={handleOptionSelect} />
           </div>
-          <div className="tree-graph">
-            {treeData && (
-              <TreeGraph
-                data={treeData}
-                range={value}
+          <div className="tree-graph-container">
+            <div className="scatter-graph">
+              <ScatterGraph data={scatterData} option={selectedOption} />
+            </div>
+            <div className="tree-graph">
+              {treeData && (
+                <TreeGraph
+                  data={treeData}
+                  range={value}
+                  min={minValue}
+                  max={maxValue}
+                  option={selectedOption}
+                />
+              )}
+            </div>
+            <div className="matrics-slider">
+              <Slider
+                orientation="vertical"
+                value={value}
+                onChange={handleSliderChange}
+                valueLabelDisplay="auto"
+                getAriaLabel={() => "Metrics range"}
                 min={minValue}
                 max={maxValue}
-                option={selectedOption}
+                step={0.1}
+                aria-labelledby="range-slider"
               />
-            )}
+            </div>
           </div>
-          <div className="matrics-slider">
-            <Slider
-              orientation="vertical"
-              value={value}
-              onChange={handleSliderChange}
-              valueLabelDisplay="auto"
-              getAriaLabel={() => "Metrics range"}
-              min={minValue}
-              max={maxValue}
-              step={0.1}
-              aria-labelledby="range-slider"
-            />
-          </div>
-        </div>
+        </Paper>
         <div className="smell-graph">
           <PiChartViz data={csvData} />
         </div>

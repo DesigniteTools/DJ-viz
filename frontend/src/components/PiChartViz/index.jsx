@@ -28,8 +28,9 @@ export default function PiChartViz({ data }) {
   };
 
   return (
-    <>
+    <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#F9F6EE" }}>
       <div className="header center">
+        <h2 className="center">Smells</h2>
         <ToggleButtonGroup
           color="primary"
           value={activeSmell}
@@ -42,16 +43,14 @@ export default function PiChartViz({ data }) {
           ))}
         </ToggleButtonGroup>
       </div>
-      <Paper variant="outlined" elevation={2} sx={{ backgroundColor: "#F9F6EE" }}>
-        <div className="body-content">
-          <PiChart
-            data={data[activeSmell]}
-            activeSmell={activeSmell}
-            onSectorClick={handleSectorClick}
-          />
-          <Details data={data[activeSmell]} sector={selectedSector} activeSmell={activeSmell} />
-        </div>
-      </Paper>
-    </>
+      <div className="body-content">
+        <PiChart
+          data={data[activeSmell]}
+          activeSmell={activeSmell}
+          onSectorClick={handleSectorClick}
+        />
+        <Details data={data[activeSmell]} sector={selectedSector} activeSmell={activeSmell} />
+      </div>
+    </Paper>
   );
 }

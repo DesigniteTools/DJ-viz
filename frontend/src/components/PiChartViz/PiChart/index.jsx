@@ -34,9 +34,13 @@ export default function PiChart({ data, activeSmell, onSectorClick }) {
     onSectorClick(entry.name);
   };
 
+  const handleLegendClick = (entry) => {
+    onSectorClick(entry.value);
+  };
+
   return (
     <div className="pi-chart center">
-      <PieChart width={300} height={400}>
+      <PieChart width={250} height={400}>
         <Tooltip />
         <Pie
           data={pieChartData}
@@ -50,7 +54,7 @@ export default function PiChart({ data, activeSmell, onSectorClick }) {
             <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
           ))}
         </Pie>
-        <Legend iconType="cirlce" layout="verticle" align="center" />
+        <Legend iconType="cirlce" layout="verticle" align="center" onClick={handleLegendClick} />
       </PieChart>
     </div>
   );
