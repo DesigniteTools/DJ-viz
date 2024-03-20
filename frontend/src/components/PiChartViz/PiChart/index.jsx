@@ -24,19 +24,18 @@ export default function PiChart({ data, activeSmell, onSectorClick }) {
     return acc;
   }, {});
 
-  // eslint-disable-next-line no-unused-vars
-  const pieChartData = Object.entries(countByType).map(([name, value], index) => ({
+  const pieChartData = Object.entries(countByType).map(([name, value]) => ({
     name,
     value
   }));
 
-  const handleSectorClick = (entry) => {
+  function handleSectorClick(entry) {
     onSectorClick(entry.name);
-  };
+  }
 
-  const handleLegendClick = (entry) => {
+  function handleLegendClick(entry) {
     onSectorClick(entry.value);
-  };
+  }
 
   return (
     <div className="pi-chart center">

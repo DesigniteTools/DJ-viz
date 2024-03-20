@@ -2,9 +2,9 @@ import { FormControl, Radio, RadioGroup, FormControlLabel } from "@mui/material"
 import "./styles.css";
 
 export default function RadioButtonList({ values, onOptionSelect }) {
-  const handleOptionChange = (event) => {
+  function handleOptionChange(event) {
     onOptionSelect(event.target.value);
-  };
+  }
 
   return (
     <div className="bullet-list center">

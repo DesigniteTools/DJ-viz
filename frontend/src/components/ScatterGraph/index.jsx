@@ -9,7 +9,7 @@ import {
 import "./styles.css";
 
 export default function ScatterGraph({ data, option }) {
-  const CustomTooltip = ({ active, payload }) => {
+  function CustomTooltip({ active, payload }) {
     if (active && payload && payload.length) {
       return (
         <div className="custom-tooltip">
@@ -18,9 +18,8 @@ export default function ScatterGraph({ data, option }) {
         </div>
       );
     }
-
     return null;
-  };
+  }
   return (
     <ResponsiveContainer width="100%" height={500}>
       <ScatterChart

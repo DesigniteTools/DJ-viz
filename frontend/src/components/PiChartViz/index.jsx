@@ -16,16 +16,16 @@ export default function PiChartViz({ data }) {
     "TestSmells"
   ];
 
-  const handleSmellChange = (event, newSmell) => {
+  function handleSmellChange(event, newSmell) {
     if (newSmell) {
       setActiveSmell(newSmell);
       setSelectedSector(null);
     }
-  };
+  }
 
-  const handleSectorClick = (sectorName) => {
+  function handleSectorClick(sectorName) {
     setSelectedSector(sectorName);
-  };
+  }
 
   return (
     <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#F9F6EE" }}>

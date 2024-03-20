@@ -16,6 +16,9 @@ export default function Visualization() {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(100);
   const [value, setValue] = useState([0, 100]);
+  const metricKeys = getMetricKeys(csvData);
+  const scatterData = getScatterData(csvData, selectedOption);
+  const treeData = getTreeMapData(csvData, selectedOption);
 
   useEffect(() => {
     if (csvData && csvData.TypeMetrics && csvData.TypeMetrics.length > 0) {
@@ -36,10 +39,6 @@ export default function Visualization() {
     }
   }, [csvData, selectedOption]);
 
-  const handleSliderChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
   useEffect(() => {
     const folderPath = Cookies.get("path");
     const url = `http://localhost:3001/csvData?folderPath=${folderPath}`;
@@ -48,15 +47,13 @@ export default function Visualization() {
     });
   }, []);
 
-  const handleOptionSelect = (option) => {
+  function handleSliderChange(event, newValue) {
+    setValue(newValue);
+  }
+
+  function handleOptionSelect(option) {
     setSelectedOption(option);
-  };
-
-  const metricKeys = getMetricKeys(csvData);
-
-  const scatterData = getScatterData(csvData, selectedOption);
-
-  const treeData = getTreeMapData(csvData, selectedOption);
+  }
 
   return (
     <div className="visualization">

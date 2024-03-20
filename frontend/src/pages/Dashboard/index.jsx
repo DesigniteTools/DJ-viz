@@ -13,11 +13,11 @@ export default function Dashboard() {
   const [openAlert, setOpenAlert] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const handleCloseAlert = () => {
+  function handleCloseAlert() {
     setOpenAlert(false);
-  };
+  }
 
-  const handleSubmit = () => {
+  function handleSubmit() {
     Cookies.set("path", folderPath, { expires: 1 });
     const url = `http://localhost:3001/csvData?folderPath=${folderPath}`;
 
@@ -31,7 +31,7 @@ export default function Dashboard() {
         setOpenAlert(true);
         console.error("Error fetching data:", error);
       });
-  };
+  }
 
   useEffect(() => {
     if (formSubmitted && Object.keys(csvData).length === 0) {

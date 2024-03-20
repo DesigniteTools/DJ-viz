@@ -10,7 +10,6 @@ export function getMetricKeys(data) {
   }
 }
 
-//function to get data regarding number of smells in each catagories
 export function aggregateData(data, key) {
   if (!data || data.length === 0) {
     return [];
@@ -27,7 +26,6 @@ export function aggregateData(data, key) {
   return Object.entries(aggregated).map(([name, value]) => ({ name, value }));
 }
 
-// function to get scatter chart data for TypeMetrics
 export function getScatterData(csvData, selectedMetric) {
   if (!csvData || !csvData.TypeMetrics || csvData.TypeMetrics.length === 0) {
     return [];
@@ -46,26 +44,21 @@ export function getTreeMapData(csvData, selectedMetric) {
   }
   const treeMapData = [];
 
-  // Iterate over each item in TypeMetrics
   csvData.TypeMetrics.forEach((item) => {
     const packageName = item["Package Name"];
     const typeName = item["Type Name"];
     const loc = parseInt(item.LOC);
     const val = parseInt(item[selectedMetric]);
 
-    // Extract last part of the package name
     const lastPackageNamePart = packageName.split(".").pop();
 
-    // Check if the package already exists in the treeMapData
     let packageNode = treeMapData.find((node) => node.name === lastPackageNamePart);
 
-    // If package doesn't exist, create a new package node
     if (!packageNode) {
       packageNode = { name: lastPackageNamePart, children: [] };
       treeMapData.push(packageNode);
     }
 
-    // Add the type node to the children of the package node
     packageNode.children.push({ name: typeName, size: loc, value: val });
   });
 

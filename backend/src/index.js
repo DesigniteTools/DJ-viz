@@ -8,7 +8,6 @@ const app = express();
 app.use(cors());
 const port = 3001;
 
-// Endpoint to get CSV data
 app.get("/csvData", (req, res) => {
   try {
     const folderPath = req.query.folderPath;
@@ -24,7 +23,6 @@ app.get("/csvData", (req, res) => {
         const filePath = path.join(directoryPath, file);
         const fileText = fs.readFileSync(filePath, "utf-8");
 
-        // Use PapaParse to parse CSV data
         Papa.parse(fileText, {
           complete: (fileData) => {
             data[file.slice(0, -4)] = fileData.data;
