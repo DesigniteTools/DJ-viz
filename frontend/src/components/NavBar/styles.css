@@ -8,26 +8,14 @@
   padding: 1rem 2rem;
 }
 
-.logo a {
-  font-size: 2rem;
+.nav-text {
+  font-size: 1rem;
   font-weight: bold;
   color: #fff;
   transition: color 0.3s; 
   text-decoration: none;
 }
 
-.nav-links a {
-  color: #fff;
-  transition: color 0.3s; 
-  text-decoration: none;
-}
-
-.logo a:hover,
-.nav-links a:hover {
-  color: #ddd;
-}
-
-.logo a:active,
-.nav-links a:active {
-  color: red;
+.nav-text h2 {
+  margin: 0;
 }

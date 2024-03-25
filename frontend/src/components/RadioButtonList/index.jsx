@@ -9,7 +9,7 @@ export default function RadioButtonList({ values, onOptionSelect }) {
   return (
     <div className="bullet-list center">
       <FormControl>
-        <h2 className="center">Type Metrics</h2>
+        <h2 className="pd-t center">Type Metrics</h2>
         <RadioGroup
           row
           aria-labelledby="demo-radio-buttons-group-label"

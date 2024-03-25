@@ -1,6 +1,5 @@
 import React from "react";
 import { XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, Rectangle } from "recharts";
-// import "./styles.css";
 
 export default function SmellsGraph({ data }) {
   const categories = [
@@ -18,7 +17,7 @@ export default function SmellsGraph({ data }) {
 
   return (
     <div className="smells-graph center">
-      <h2>Number of Smells in Each Category</h2>
+      <h2 className="pd-t">Number of Smells in Each Category</h2>
       <ResponsiveContainer width="90%" height={500}>
         <BarChart data={chartData} margin={{ top: 10, right: 50, left: 15, bottom: 20 }}>
           <XAxis dataKey="name" textAnchor="middle" interval={0} />

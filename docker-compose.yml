@@ -1,28 +1,22 @@
 services:
   back-end:
-    build: 
-      context: backend
-    container_name: backend
+    image: kevinpanchal/smells-viz-backend
     working_dir: /usr/src/app
-    networks: 
+    networks:
       - kevin
-    volumes: 
-      - "/Users/kevin/Code/ASDC (CSCI 5308)/The Project/Smells:/usr/src/app/smells"
+    volumes:
+      - "${LOCAL_FOLDER_PATH}:/usr/src/app/smells"
     tty: true
-    ports: 
+    ports:
       - "3001:3001"
-    command: npm run start
 
   front-end:
-    build: 
-      context: frontend
-    container_name: frontend
+    image: kevinpanchal/smells-viz-frontend
     working_dir: /usr/src/app
-    networks: 
+    networks:
       - kevin
-    ports: 
+    ports:
       - "3000:3000"
-    command: npm run start
 
 networks:
   kevin:

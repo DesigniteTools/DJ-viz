@@ -1,7 +1,6 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
 import SmellsGraph from "../../components/SmellsGraph";
-import Cookies from "js-cookie";
 import axios from "axios";
 import RadioButtonList from "../../components/RadioButtonList";
 import { getMetricKeys, getScatterData, getTreeMapData } from "../../utils/helper";
@@ -19,6 +18,13 @@ export default function Visualization() {
   const metricKeys = getMetricKeys(csvData);
   const scatterData = getScatterData(csvData, selectedOption);
   const treeData = getTreeMapData(csvData, selectedOption);
+
+  useEffect(() => {
+    const url = "http://localhost:3001/csvData?folderPath=/usr/src/app/smells";
+    axios.get(url).then((response) => {
+      setCsvData(response.data);
+    });
+  }, []);
 
   useEffect(() => {
     if (csvData && csvData.TypeMetrics && csvData.TypeMetrics.length > 0) {
@@ -39,14 +45,6 @@ export default function Visualization() {
     }
   }, [csvData, selectedOption]);
 
-  useEffect(() => {
-    const folderPath = Cookies.get("path");
-    const url = `http://localhost:3001/csvData?folderPath=${folderPath}`;
-    axios.get(url).then((response) => {
-      setCsvData(response.data);
-    });
-  }, []);
-
   function handleSliderChange(event, newValue) {
     setValue(newValue);
   }
@@ -56,8 +54,7 @@ export default function Visualization() {
   }
 
   return (
-    <div className="visualization">
-      <h1 style={{ textAlign: "center" }}>Visualization</h1>
+    <div className="visualization pd-t">
       <div className="graphs">
         <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#F9F6EE" }}>
           <SmellsGraph data={csvData} />

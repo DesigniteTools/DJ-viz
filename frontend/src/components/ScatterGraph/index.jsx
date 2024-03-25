@@ -32,7 +32,7 @@ export default function ScatterGraph({ data, option }) {
         <CartesianGrid />
         <YAxis type="number" dataKey={option} name={option} />
         <Tooltip content={<CustomTooltip />} />
-        <Scatter name="Type Metrics" data={data} fill="#8884d8" />
+        <Scatter name="Type Metrics" data={data} fill="#2f4b7c" />
       </ScatterChart>
     </ResponsiveContainer>
   );

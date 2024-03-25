@@ -8,3 +8,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.border {
+  border: 1px solid red;
+}
+
+.pd-t {
+  padding-top: 1rem;
+}

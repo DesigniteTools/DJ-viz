@@ -16,12 +16,21 @@ export default function Details({ data, sector, activeSmell }) {
   if (!sector) {
     const columns = Object.keys(data[0] || {});
     return (
-      <TableContainer sx={{ maxWidth: 1000, height: 500, maxHeight: 500 }} component={Paper}>
-        <Table stickyHeader aria-label="dynamic table" sx={{ backgroundColor: "#FDFCF9" }}>
+      <TableContainer
+        sx={{ maxWidth: 850, height: 500, maxHeight: 500 }}
+        component={Paper}
+        style={{ backgroundColor: "#F9F6EE" }}>
+        <Table
+          size="small"
+          stickyHeader
+          aria-label="dynamic table"
+          sx={{ backgroundColor: "#F9F6EE" }}>
           <TableHead>
             <TableRow>
               {columns.map((column, index) => (
-                <TableCell key={index} sx={{ whiteSpace: "nowrap" }}>
+                <TableCell
+                  key={index}
+                  sx={{ backgroundColor: "#003f5c", color: "white", whiteSpace: "nowrap" }}>
                   {column}
                 </TableCell>
               ))}
@@ -52,12 +61,21 @@ export default function Details({ data, sector, activeSmell }) {
       {filteredData.length === 0 ? (
         <div>No data available for selected sector</div>
       ) : (
-        <TableContainer sx={{ maxWidth: 1000, height: 500, maxHeight: 500 }} component={Paper}>
-          <Table stickyHeader aria-label="dynamic table" sx={{ backgroundColor: "#FDFCF9" }}>
+        <TableContainer
+          sx={{ maxWidth: 850, height: 500, maxHeight: 500 }}
+          component={Paper}
+          style={{ backgroundColor: "#F9F6EE" }}>
+          <Table
+            size="small"
+            stickyHeader
+            aria-label="dynamic table"
+            sx={{ backgroundColor: "#F9F6EE" }}>
             <TableHead>
               <TableRow>
                 {columns.map((column, index) => (
-                  <TableCell key={index} sx={{ whiteSpace: "nowrap" }}>
+                  <TableCell
+                    key={index}
+                    sx={{ backgroundColor: "#003f5c", color: "white", whiteSpace: "nowrap" }}>
                     {column}
                   </TableCell>
                 ))}

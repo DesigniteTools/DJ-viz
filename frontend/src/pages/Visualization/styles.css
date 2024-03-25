@@ -1,17 +1,3 @@
-.row {
-  margin: 0.5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  align-content: flex-start;
-}
-
 .item {
   padding: 0.5rem;
   margin: 1.5rem;
@@ -20,6 +6,7 @@
 }
 
 .scatter-graph{
+  padding-left: 2rem;
   display: flex;
   align-items: center;
   width: 100%;
@@ -41,6 +28,7 @@
 }
 
 .matrics-slider {
+  padding-right: 2rem;
   display: flex;
   width: 10%;
   height: 20rem;
