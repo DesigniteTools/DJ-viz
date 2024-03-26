@@ -63,3 +63,4 @@ Follow these steps to run the application using Docker:
    ```
 
 3. Once the containers are up and running, open your web browser and go to [localhost:3000](http://localhost:3000) to access the application.
+   
