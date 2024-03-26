@@ -20,7 +20,11 @@ export default function Visualization() {
   const treeData = getTreeMapData(csvData, selectedOption);
 
   useEffect(() => {
-    const url = "http://localhost:3001/csvData?folderPath=/usr/src/app/smells";
+    //for docker
+    // const url = "http://localhost:3001/csvData?folderPath=/usr/src/app/smells";
+    //for local development
+    const url =
+      "http://localhost:3001/csvData?folderPath=/Users/kevin/Code/ASDC (CSCI 5308)/The Project/Smells/s10";
     axios.get(url).then((response) => {
       setCsvData(response.data);
     });
