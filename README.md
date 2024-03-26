@@ -29,28 +29,36 @@ The project aims to develop a web application for visualizing and analyzing code
    - Presents a treemap visualization where the size of rectangles corresponds to the lines of code (LOC) of different code entities.
    - Includes a slider to set the range of metrics to be displayed on the treemap, allowing users to focus on specific metric values.
 
+## Usage
+
+Follow these steps to run the application using Docker:
+
+### Prerequisites
+
+1. Docker should be installed on your machine. You can check if Docker is installed by running the following command in your terminal:
+
+   ```bash
+   docker --version
+   ```
+
+2. If Docker is not installed, download and install Docker Desktop for your operating system:
+
+   - For Mac: [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
+   - For Windows: [Docker Desktop for Windows](https://docs.docker.com/desktop/windows/install/)
+
 ## Installation
 
 1. Clone the repository: `git clone https://github.com/SMART-Dal/smells-viz.git`
-2. Navigate to the project directory: `cd smells-viz`
-3. Install dependencies for both frontend and backend:
-   - Frontend: `cd frontend && npm install`
-   - Backend: `cd backend && npm install`
+2. Navigate to the project directory: `cd smells-viz/smellsViz`
 
-## Usage
+### Running the Application with Docker
 
-1. Start the backend server:
+1. Open your terminal and navigate to the folder where the docker-compose.yml file is located.
 
-   ```bash
-   cd backend
-   npm start
-   ```
-
-2. Start the frontend development server:
+2. Run the following command in your terminal, replacing /absolute_path/of/smells/folder with the absolute path to your smells folder:
 
    ```bash
-   cd frontend
-   npm start
+   LOCAL_FOLDER_PATH="/absolute_path/of/smells/folder" docker-compose up
    ```
 
-3. Open theand visit <http://localhost:3000> to view the application.
+3. Once the containers are up and running, open your web browser and go to [localhost:3000](http://localhost:3000) to access the application.
