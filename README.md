@@ -45,6 +45,7 @@ Follow these steps to run the application using Docker:
 
    - For Mac: [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
    - For Windows: [Docker Desktop for Windows](https://docs.docker.com/desktop/windows/install/)
+   - For Linux: [Docker Desktop for Linux](https://docs.docker.com/desktop/install/linux-install/)
 
 ## Installation
 
