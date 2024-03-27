@@ -1,0 +1,21 @@
+/* NavBar styles */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 1rem 2rem;
+}
+
+.nav-text {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  transition: color 0.3s; 
+  text-decoration: none;
+}
+
+.nav-text h2 {
+  margin: 0;
+}
