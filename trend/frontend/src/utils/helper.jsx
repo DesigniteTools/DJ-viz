@@ -42,3 +42,74 @@ export function getMetricsPlotData(trendData, selectedMetric) {
 
   return processedData;
 }
+
+export function getSmellsDiff(trendData) {
+  const commits = Object.keys(trendData);
+  const smellDiffData = [];
+
+  for (let i = 1; i < commits.length; i++) {
+    const commit1 = trendData[commits[i - 1]];
+    const commit2 = trendData[commits[i]];
+
+    const newSmellsCount = getSmellsCountDifference(commit1, commit2, "new");
+    const removedSmellsCount = getSmellsCountDifference(commit1, commit2, "removed");
+    const remainingSmellsCount = getSmellsCountDifference(commit1, commit2, "remaining");
+
+    const diffMetrics = {
+      commit: commits[i],
+      new: newSmellsCount,
+      removed: removedSmellsCount,
+      remaining: remainingSmellsCount
+    };
+
+    smellDiffData.push(diffMetrics);
+  }
+
+  return smellDiffData;
+}
+
+function getSmellsCountDifference(commit1, commit2, countType) {
+  let totalCount = 0;
+  for (const smellType in commit2) {
+    if (Array.isArray(commit2[smellType])) {
+      const countFunction =
+        countType === "new"
+          ? getNewSmellsCount
+          : countType === "removed"
+            ? getRemovedSmellsCount
+            : getRemainingSmellsCount;
+      totalCount += countFunction(commit1, commit2, smellType);
+    }
+  }
+  return totalCount;
+}
+
+function getNewSmellsCount(commit1, commit2, smellType) {
+  let count = 0;
+  for (const smell of commit2[smellType]) {
+    if (!commit1[smellType].some((s) => s["Cause of the Smell"] === smell["Cause of the Smell"])) {
+      count++;
+    }
+  }
+  return count;
+}
+
+function getRemovedSmellsCount(commit1, commit2, smellType) {
+  let count = 0;
+  for (const smell of commit1[smellType]) {
+    if (!commit2[smellType].some((s) => s["Cause of the Smell"] === smell["Cause of the Smell"])) {
+      count++;
+    }
+  }
+  return count;
+}
+
+function getRemainingSmellsCount(commit1, commit2, smellType) {
+  let count = 0;
+  for (const smell of commit1[smellType]) {
+    if (commit2[smellType].some((s) => s["Cause of the Smell"] === smell["Cause of the Smell"])) {
+      count++;
+    }
+  }
+  return count;
+}

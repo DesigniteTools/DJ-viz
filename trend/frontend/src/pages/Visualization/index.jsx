@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import MetricsPlot from "../../components/MetricsPlot";
 import StackedBarChart from "../../components/StackedBarChart";
 import axios from "axios";
-import { getMetricKeys, getMetricsPlotData } from "../../utils/helper";
+import { getMetricKeys, getMetricsPlotData, getSmellsDiff } from "../../utils/helper";
 import RadioButtonList from "../../components/RadioButtonList";
+import { Paper } from "@mui/material";
 
 export default function Visualization() {
   const [trendData, setTrendData] = useState({});
@@ -12,7 +13,8 @@ export default function Visualization() {
   const first = Object.keys(trendData)[0];
   const metricKeys = getMetricKeys(trendData[first]);
   const metricsPlotData = getMetricsPlotData(trendData, selectedOption);
-  console.log(selectedOption, metricsPlotData);
+  const smellDiffData = getSmellsDiff(trendData);
+  console.log(smellDiffData);
 
   useEffect(() => {
     //for docker
@@ -31,9 +33,23 @@ export default function Visualization() {
 
   return (
     <div className="vis-container">
-      <RadioButtonList keys={metricKeys} onOptionSelect={handleOptionSelect} />
-      <MetricsPlot data={metricsPlotData} />
-      <StackedBarChart />
+      <Paper
+        variant="elevation"
+        elevation={3}
+        sx={{ backgroundColor: "#F9F6EE" }}
+        className="center pd-t">
+        <StackedBarChart data={smellDiffData} />
+      </Paper>
+      <div className="metrics-container pd-t">
+        <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#F9F6EE" }}>
+          <div className="radio-buttons">
+            <RadioButtonList keys={metricKeys} onOptionSelect={handleOptionSelect} />
+          </div>
+          <div className="metrics-plot pd-t center">
+            <MetricsPlot data={metricsPlotData} />
+          </div>
+        </Paper>
+      </div>
     </div>
   );
 }

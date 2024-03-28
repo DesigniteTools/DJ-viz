@@ -64,7 +64,7 @@ export default function TreeGraph({ data, range, min, max, option }) {
       .attr("font-weight", "bold")
       .attr("font-size", "8px")
       .attr("fill", "black");
-  }, [data, range, min, max]);
+  }, [data, range, min, max, option]);
 
   return <div ref={svgRef}></div>;
 }

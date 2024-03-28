@@ -1,5 +1,4 @@
 import { FormControl, Radio, RadioGroup, FormControlLabel } from "@mui/material";
-import "./styles.css";
 
 export default function RadioButtonList({ keys, onOptionSelect }) {
   function handleOptionChange(event) {
@@ -7,9 +6,9 @@ export default function RadioButtonList({ keys, onOptionSelect }) {
   }
 
   return (
-    <div className="bullet-list center">
+    <div className="center">
       <FormControl>
-        <h2 className="pd-t center">Type Metrics</h2>
+        <h2 className="pd-t center">Metrics</h2>
         <RadioGroup
           row
           aria-labelledby="demo-radio-buttons-group-label"
