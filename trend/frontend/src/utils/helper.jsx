@@ -70,8 +70,9 @@ export function getSmellsDiff(trendData) {
 
 function getSmellsCountDifference(commit1, commit2, countType) {
   let totalCount = 0;
+  const excludedSmellTypes = ["TypeMetrics", "MethodMetrics"];
   for (const smellType in commit2) {
-    if (Array.isArray(commit2[smellType])) {
+    if (!excludedSmellTypes.includes(smellType) && Array.isArray(commit2[smellType])) {
       const countFunction =
         countType === "new"
           ? getNewSmellsCount
