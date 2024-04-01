@@ -34,9 +34,9 @@ export function getMetricsPlotData(trendData, selectedMetric) {
 
     processedData.push({
       folderName,
-      min: minValue,
       max: maxValue,
-      average: averageValue
+      average: averageValue,
+      min: minValue
     });
   });
 
@@ -57,9 +57,9 @@ export function getSmellsDiff(trendData) {
 
     const diffMetrics = {
       commit: commits[i],
-      new: newSmellsCount,
-      removed: removedSmellsCount,
-      remaining: remainingSmellsCount
+      "New Smell": newSmellsCount,
+      "Removed Smell": removedSmellsCount,
+      "Remaining Smell": remainingSmellsCount
     };
 
     smellDiffData.push(diffMetrics);
