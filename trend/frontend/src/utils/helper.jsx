@@ -30,13 +30,13 @@ export function getMetricsPlotData(trendData, selectedMetric) {
       sum += metricValue;
     });
 
-    const averageValue = sum / typeMetrics.length;
+    const averageValue = (sum / typeMetrics.length).toPrecision(2);
 
     processedData.push({
       folderName,
-      max: maxValue,
-      average: averageValue,
-      min: minValue
+      Max: maxValue,
+      Avg: averageValue,
+      Min: minValue
     });
   });
 

@@ -27,9 +27,9 @@ export default function MetricsPlot({ data }) {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="min" stroke="#508104" strokeWidth={2} />
-        <Line type="monotone" dataKey="max" stroke="#b64201" strokeWidth={2} />
-        <Line type="monotone" dataKey="average" stroke="#f3b800" strokeWidth={2} />
+        <Line type="monotone" dataKey="Max" stroke="#b64201" strokeWidth={2} />
+        <Line type="monotone" dataKey="Avg" stroke="#f3b800" strokeWidth={2} />
+        <Line type="monotone" dataKey="Min" stroke="#508104" strokeWidth={2} />
       </LineChart>
     </ResponsiveContainer>
   );
