@@ -43,7 +43,7 @@ export function getMetricsPlotData(trendData, selectedMetric) {
   return processedData;
 }
 
-export function getSmellsDiff(trendData) {
+export function getSmellsDiff(trendData, smell) {
   const commits = Object.keys(trendData);
   const smellDiffData = [];
 
@@ -51,9 +51,9 @@ export function getSmellsDiff(trendData) {
     const commit1 = trendData[commits[i - 1]];
     const commit2 = trendData[commits[i]];
 
-    const newSmellsCount = getSmellsCountDifference(commit1, commit2, "new");
-    const removedSmellsCount = getSmellsCountDifference(commit1, commit2, "removed");
-    const remainingSmellsCount = getSmellsCountDifference(commit1, commit2, "remaining");
+    const newSmellsCount = getSmellsCountDifference(commit1, commit2, "new", smell);
+    const removedSmellsCount = getSmellsCountDifference(commit1, commit2, "removed", smell);
+    const remainingSmellsCount = getSmellsCountDifference(commit1, commit2, "remaining", smell);
 
     const diffMetrics = {
       commit: commits[i],
@@ -68,18 +68,20 @@ export function getSmellsDiff(trendData) {
   return smellDiffData;
 }
 
-function getSmellsCountDifference(commit1, commit2, countType) {
+function getSmellsCountDifference(commit1, commit2, countType, smell) {
   let totalCount = 0;
   const excludedSmellTypes = ["TypeMetrics", "MethodMetrics"];
   for (const smellType in commit2) {
     if (!excludedSmellTypes.includes(smellType) && Array.isArray(commit2[smellType])) {
-      const countFunction =
-        countType === "new"
-          ? getNewSmellsCount
-          : countType === "removed"
-            ? getRemovedSmellsCount
-            : getRemainingSmellsCount;
-      totalCount += countFunction(commit1, commit2, smellType);
+      if (smell === "All" || smell === smellType) {
+        const countFunction =
+          countType === "new"
+            ? getNewSmellsCount
+            : countType === "removed"
+              ? getRemovedSmellsCount
+              : getRemainingSmellsCount;
+        totalCount += countFunction(commit1, commit2, smellType);
+      }
     }
   }
   return totalCount;

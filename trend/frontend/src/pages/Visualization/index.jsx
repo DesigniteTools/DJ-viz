@@ -8,13 +8,21 @@ import { Paper } from "@mui/material";
 
 export default function Visualization() {
   const [trendData, setTrendData] = useState({});
-  const [selectedOption, setSelectedOption] = useState("NOF");
+  const [selectedMetric, setSelectedMetric] = useState("NOF");
+  const [selectedSmell, setSelectedSmell] = useState("All");
 
   const first = Object.keys(trendData)[0];
   const metricKeys = getMetricKeys(trendData[first]);
-  const metricsPlotData = getMetricsPlotData(trendData, selectedOption);
-  const smellDiffData = getSmellsDiff(trendData);
-  console.log(smellDiffData);
+  const smells = [
+    "All",
+    "ArchitectureSmells",
+    "DesignSmells",
+    "ImplementationSmells",
+    "TestSmells",
+    "TestabilitySmells"
+  ];
+  const metricsPlotData = getMetricsPlotData(trendData, selectedMetric);
+  const smellDiffData = getSmellsDiff(trendData, selectedSmell);
 
   useEffect(() => {
     //for docker
@@ -27,23 +35,42 @@ export default function Visualization() {
     });
   }, []);
 
-  function handleOptionSelect(option) {
-    setSelectedOption(option);
+  function handleMetricSelect(option) {
+    setSelectedMetric(option);
+  }
+
+  function handleSmellSelect(option) {
+    setSelectedSmell(option);
   }
 
   return (
     <div className="vis-container">
-      <Paper
-        variant="elevation"
-        elevation={3}
-        sx={{ backgroundColor: "#F9F6EE" }}
-        className="center pd-t">
-        <StackedBarChart data={smellDiffData} />
-      </Paper>
+      <div className="bar-chart-container">
+        <Paper
+          variant="elevation"
+          elevation={3}
+          sx={{ backgroundColor: "#F9F6EE" }}
+          className="center pd-t">
+          <div className="radio-buttons">
+            <RadioButtonList
+              keys={smells}
+              onOptionSelect={handleSmellSelect}
+              heading="Trend Analysis"
+              active="All"
+            />
+          </div>
+          <StackedBarChart data={smellDiffData} />
+        </Paper>
+      </div>
       <div className="metrics-container pd-t">
         <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#F9F6EE" }}>
           <div className="radio-buttons">
-            <RadioButtonList keys={metricKeys} onOptionSelect={handleOptionSelect} />
+            <RadioButtonList
+              keys={metricKeys}
+              onOptionSelect={handleMetricSelect}
+              heading="Metrics"
+              active="NOF"
+            />
           </div>
           <div className="metrics-plot pd-t center">
             <MetricsPlot data={metricsPlotData} />
