@@ -33,7 +33,7 @@ export function getMetricsPlotData(trendData, selectedMetric) {
     const averageValue = (sum / typeMetrics.length).toPrecision(2);
 
     processedData.push({
-      folderName,
+      folderName: truncateName(folderName),
       Max: maxValue,
       Avg: averageValue,
       Min: minValue
@@ -56,7 +56,7 @@ export function getSmellsDiff(trendData, smell) {
     const remainingSmellsCount = getSmellsCountDifference(commit1, commit2, "remaining", smell);
 
     const diffMetrics = {
-      commit: commits[i],
+      commit: truncateName(commits[i]),
       "New Smell": newSmellsCount,
       "Removed Smell": removedSmellsCount,
       "Remaining Smell": remainingSmellsCount
@@ -115,4 +115,11 @@ function getRemainingSmellsCount(commit1, commit2, smellType) {
     }
   }
   return count;
+}
+
+function truncateName(hash) {
+  if (hash.length <= 8) {
+    return hash;
+  }
+  return hash.slice(0, 4) + "..." + hash.slice(-2);
 }
