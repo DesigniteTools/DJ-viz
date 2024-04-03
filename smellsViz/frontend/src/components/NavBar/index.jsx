@@ -7,7 +7,7 @@ export default function NavBar() {
         <h2>Smells Viz</h2>
       </div>
       <div className="nav-text">
-        <h2>Visualization</h2>
+        <h2>DesigniteJava</h2>
       </div>
     </div>
   );

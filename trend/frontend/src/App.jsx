@@ -1,5 +1,6 @@
 import "./App.css";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import Visualization from "./pages/Visualization";
 
 export default function App() {
@@ -9,6 +10,7 @@ export default function App() {
       <div className="App">
         <Visualization />
       </div>
+      <Footer />
     </>
   );
 }

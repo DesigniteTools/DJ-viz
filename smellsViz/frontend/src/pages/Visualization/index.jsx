@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import SmellsGraph from "../../components/SmellsGraph";
 import axios from "axios";
 import RadioButtonList from "../../components/RadioButtonList";
-import { getMetricKeys, getScatterData, getTreeMapData } from "../../utils/helper";
+import {
+  getMetricKeys,
+  getScatterData,
+  getTreeMapData,
+} from "../../utils/helper";
 import ScatterGraph from "../../components/ScatterGraph";
 import TreeGraph from "../../components/TreeGraph";
 import { Slider, Paper } from "@mui/material";
@@ -24,7 +28,7 @@ export default function Visualization() {
     // const url = "http://localhost:3001/csvData?folderPath=/usr/src/app/smells";
     //for local development
     const url =
-      "http://localhost:3001/csvData?folderPath=/Users/kevin/Code/ASDC (CSCI 5308)/The Project/Smells/s10";
+      "http://localhost:3001/csvData?folderPath=/Users/kevin/Code/ASDC (CSCI 5308)/The Project/Smells/45e32b6a00dec02ae7d7c45c6b7106779a124685";
     axios.get(url).then((response) => {
       setCsvData(response.data);
     });
@@ -60,12 +64,23 @@ export default function Visualization() {
   return (
     <div className="visualization pd-t">
       <div className="graphs">
-        <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#F9F6EE" }}>
+        <Paper
+          variant="elevation"
+          elevation={3}
+          sx={{ backgroundColor: "#F9F6EE" }}
+        >
           <SmellsGraph data={csvData} />
         </Paper>
-        <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#F9F6EE" }}>
+        <Paper
+          variant="elevation"
+          elevation={3}
+          sx={{ backgroundColor: "#F9F6EE" }}
+        >
           <div className="radio-buttons">
-            <RadioButtonList values={metricKeys} onOptionSelect={handleOptionSelect} />
+            <RadioButtonList
+              values={metricKeys}
+              onOptionSelect={handleOptionSelect}
+            />
           </div>
           <div className="tree-graph-container">
             <div className="scatter-graph">
