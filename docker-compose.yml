@@ -1,17 +1,17 @@
 services:
   back-end:
-    image: kevinpanchal/smells-viz-backend
+    image: kevinpanchal/${TYPE}-viz-backend
     working_dir: /usr/src/app
     networks:
       - kevin
     volumes:
-      - "${LOCAL_FOLDER_PATH}:/usr/src/app/smells"
+      - "${FOLDER}:/usr/src/app/smells"
     tty: true
     ports:
       - "3001:3001"
 
   front-end:
-    image: kevinpanchal/smells-viz-frontend
+    image: kevinpanchal/${TYPE}-viz-frontend
     working_dir: /usr/src/app
     networks:
       - kevin

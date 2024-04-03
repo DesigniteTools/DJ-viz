@@ -26,7 +26,7 @@ export default function Visualization() {
 
   useEffect(() => {
     //for docker
-    // const url = "http://localhost:3001/csvData?folderPath=/usr/src/app/smells";
+    // const url = "http://localhost:3001/trendData?mainFolderPath=/usr/src/app/smells";
     //for local development
     const url =
       "http://localhost:3001/trendData?mainFolderPath=/Users/kevin/Code/ASDC (CSCI 5308)/The Project/Smells";
