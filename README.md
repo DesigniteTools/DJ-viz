@@ -73,7 +73,7 @@ Follow these steps to run the application using Docker:
 
    <img width="1002" alt="Screenshot 2024-04-05 at 11 10 33" src="https://github.com/SMART-Dal/smells-viz/assets/74357926/58ef70d6-c733-4fbe-8760-192b4089253b">
 
-   - The folder should also contain a .txt file that has the name of the subfolders in each line in the order it needs to be analyzed.
+   - The folder should also contain a .txt file that has the name of the subfolders in each line in the order it needs to be analyzed. The name of the file must be `commits.txt` and it should be in the same main folder.
 
    <img width="1002" alt="Screenshot 2024-04-05 at 11 13 28" src="https://github.com/SMART-Dal/smells-viz/assets/74357926/8156955f-8d39-416b-87f9-c078bdc395ee">
 
