@@ -67,14 +67,14 @@ export default function Visualization() {
         <Paper
           variant="elevation"
           elevation={3}
-          sx={{ backgroundColor: "#F9F6EE" }}
+          sx={{ backgroundColor: "#f8f9f9" }}
         >
           <SmellsGraph data={csvData} />
         </Paper>
         <Paper
           variant="elevation"
           elevation={3}
-          sx={{ backgroundColor: "#F9F6EE" }}
+          sx={{ backgroundColor: "#f8f9f9" }}
         >
           <div className="radio-buttons">
             <RadioButtonList

@@ -49,7 +49,7 @@ export default function Visualization() {
         <Paper
           variant="elevation"
           elevation={3}
-          sx={{ backgroundColor: "#F9F6EE" }}
+          sx={{ backgroundColor: "#f8f9f9" }}
           className="center pd-t">
           <div className="radio-buttons">
             <RadioButtonList
@@ -63,7 +63,7 @@ export default function Visualization() {
         </Paper>
       </div>
       <div className="metrics-container pd-t">
-        <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#F9F6EE" }}>
+        <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#f8f9f9" }}>
           <div className="radio-buttons">
             <RadioButtonList
               keys={metricKeys}

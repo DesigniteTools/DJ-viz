@@ -28,7 +28,7 @@ export default function PiChartViz({ data }) {
   }
 
   return (
-    <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#F9F6EE" }}>
+    <Paper variant="elevation" elevation={3} sx={{ backgroundColor: "#f8f9f9" }}>
       <div className="header center">
         <h2 className="center pd-t">Smells</h2>
         <ToggleButtonGroup

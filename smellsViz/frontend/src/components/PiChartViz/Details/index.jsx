@@ -19,12 +19,12 @@ export default function Details({ data, sector, activeSmell }) {
       <TableContainer
         sx={{ maxWidth: 850, height: 500, maxHeight: 500 }}
         component={Paper}
-        style={{ backgroundColor: "#F9F6EE" }}>
+        style={{ backgroundColor: "#f8f9f9" }}>
         <Table
           size="small"
           stickyHeader
           aria-label="dynamic table"
-          sx={{ backgroundColor: "#F9F6EE" }}>
+          sx={{ backgroundColor: "#f8f9f9" }}>
           <TableHead>
             <TableRow>
               {columns.map((column, index) => (
@@ -64,12 +64,12 @@ export default function Details({ data, sector, activeSmell }) {
         <TableContainer
           sx={{ maxWidth: 850, height: 500, maxHeight: 500 }}
           component={Paper}
-          style={{ backgroundColor: "#F9F6EE" }}>
+          style={{ backgroundColor: "#f8f9f9" }}>
           <Table
             size="small"
             stickyHeader
             aria-label="dynamic table"
-            sx={{ backgroundColor: "#F9F6EE" }}>
+            sx={{ backgroundColor: "#f8f9f9" }}>
             <TableHead>
               <TableRow>
                 {columns.map((column, index) => (
