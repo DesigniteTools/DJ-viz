@@ -4,14 +4,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color:  #d7dbdd;
   padding: 1rem 2rem;
 }
 
 .nav-text {
   font-size: 1rem;
   font-weight: bold;
-  color: #fff;
+  color:  #e67e22 ;
   transition: color 0.3s; 
   text-decoration: none;
 }

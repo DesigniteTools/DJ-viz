@@ -25,10 +25,10 @@ export default function Visualization() {
 
   useEffect(() => {
     //for docker
-    // const url = "http://localhost:3001/csvData?folderPath=/usr/src/app/smells";
+    const url = "http://localhost:3001/csvData?folderPath=/usr/src/app/smells";
     //for local development
-    const url =
-      "http://localhost:3001/csvData?folderPath=/Users/kevin/Code/ASDC (CSCI 5308)/The Project/Smells/45e32b6a00dec02ae7d7c45c6b7106779a124685";
+    // const url =
+      // "http://localhost:3001/csvData?folderPath=/Users/kevin/Code/ASDC (CSCI 5308)/The Project/Smells/45e32b6a00dec02ae7d7c45c6b7106779a124685";
     axios.get(url).then((response) => {
       setCsvData(response.data);
     });

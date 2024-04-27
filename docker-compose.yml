@@ -1,6 +1,9 @@
 services:
   back-end:
-    image: kevinpanchal/${TYPE}-viz-backend
+    build:
+      context: smellsViz/backend
+      dockerfile: Dockerfile
+    # image: kevinpanchal/${TYPE}-viz-backend
     working_dir: /usr/src/app
     networks:
       - kevin
@@ -11,7 +14,10 @@ services:
       - "3001:3001"
 
   front-end:
-    image: kevinpanchal/${TYPE}-viz-frontend
+    build:
+      context: smellsViz/frontend
+      dockerfile: Dockerfile
+    # image: kevinpanchal/${TYPE}-viz-frontend
     working_dir: /usr/src/app
     networks:
       - kevin

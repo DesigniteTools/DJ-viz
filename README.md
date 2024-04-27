@@ -1,8 +1,6 @@
-# Smells Viz
+# DJ-Viz: Visualization for DesigniteJava analysis
 
-## Description
-
-The project aims to develop a web application for visualizing and analyzing code smells detected by the [DesigniteJava](https://www.designite-tools.com/docs/designitejava.html#) software. DesigniteJava identifies various types of code smells within Java projects and generates CSV files containing detailed information about these smells. The web application provides a user-friendly interface to upload the folder path containing these CSV files and dynamically visualize the data extracted from them.
+The project aims to develop a web application for visualizing code smells and code quality metrics detected by the [DesigniteJava](https://designite-tools.com/products-dj) tool. DesigniteJava identifies various types of code smells in Java projects and generates CSV files containing detailed information about the detected smells. The web application provides a user-friendly interface to visualize the detected smells and computed code quality metrics.
 
 ## Features
 
