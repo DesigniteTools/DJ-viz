@@ -42,3 +42,8 @@ Follow these steps to run the application using Docker:
    For the "trend" type, ensure that the folder contains subfolders that are named after the commit hashes that need to be analyzed.
 
 4. Once the containers are up and running, open your web browser and go to [localhost:3000](http://localhost:3000) to access the application.
+
+## Contributors
+
+- <a href="https://github.com/kevinpanchal">Kevin Panchal</a>
+- <a href="https://www.tusharma.in">Tushar Sharma</a>
