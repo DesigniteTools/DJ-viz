@@ -17,9 +17,9 @@ Follow these steps to run the application using Docker:
 
 ### Prerequisites
 
-1. **Run DesigniteJava for Analysis Files:** Before proceeding, ensure that you have run DesigniteJava to analyze your Java projects and generate the required files. Find more information about DesigniteJava and instructions to use the tool [here](https://designite-tools.com/products-dj).
+1. **Run DesigniteJava:** Analyze your Java project first using DesigniteJava; the tool will generate a set of CSV files that are required for this visualization tool to work. Find more information about DesigniteJava and instructions to use the tool [here](https://designite-tools.com/products-dj).
 
-2. **Check Docker Installation:** Docker should be installed on your machine.
+2. **Check Docker installation:** Docker should be installed on your machine.
 
 ### Running the application with Docker
 
