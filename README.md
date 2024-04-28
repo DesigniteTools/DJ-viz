@@ -33,7 +33,7 @@ Follow these steps to run the application using Docker:
    FOLDER="/absolute/path/of/smells/folder" MODE="smells" docker-compose up
    ```
 
-   For visualizing the trend data, invoke the command with `MODE="trend"`. The provide folder should contain a `commits.txt` file containing the names of the subfolders (of the provided folder path) in each line. It is to provide the order of analysis results corresponding to each commit (each subfolder contains analysis result corresponding to a commit). For an example, refer to this <a href="./docs/sample.png">image</a>.
+   For visualizing the trend data, invoke the command with `MODE="trend"`. The provide folder should contain a `commits.txt` file containing the names of the subfolders (of the provided folder path) in each line. It is to provide the order of analysis results corresponding to each commit (each subfolder contains analysis result corresponding to a commit). For an example, refer to this <a href="./docs/sample.png">image</a>. Script `commits.py` in the `scripts` folder helps you to save commit hashes for all commits in a file.
 
    ```bash
    FOLDER="/absolute_path/of/trend/folder" MODE="trend" docker-compose up
