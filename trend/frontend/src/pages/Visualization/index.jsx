@@ -26,10 +26,7 @@ export default function Visualization() {
 
   useEffect(() => {
     //for docker
-    // const url = "http://localhost:3001/trendData?mainFolderPath=/usr/src/app/smells";
-    //for local development
-    const url =
-      "http://localhost:3001/trendData?mainFolderPath=/Users/kevin/Code/ASDC (CSCI 5308)/The Project/Smells";
+    const url = "http://localhost:3001/trendData?mainFolderPath=/usr/src/app/smells";
     axios.get(url).then((response) => {
       setTrendData(response.data);
     });
@@ -55,7 +52,7 @@ export default function Visualization() {
             <RadioButtonList
               keys={smells}
               onOptionSelect={handleSmellSelect}
-              heading="Trend Analysis"
+              heading="Trend analysis"
               active="All"
             />
           </div>

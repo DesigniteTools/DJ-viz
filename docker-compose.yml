@@ -1,12 +1,11 @@
 services:
   back-end:
     build:
-      context: smellsViz/backend
+      context: ${MODE}/backend
       dockerfile: Dockerfile
-    # image: kevinpanchal/${TYPE}-viz-backend
     working_dir: /usr/src/app
     networks:
-      - kevin
+      - dj
     volumes:
       - "${FOLDER}:/usr/src/app/smells"
     tty: true
@@ -15,15 +14,14 @@ services:
 
   front-end:
     build:
-      context: smellsViz/frontend
+      context: ${MODE}/frontend
       dockerfile: Dockerfile
-    # image: kevinpanchal/${TYPE}-viz-frontend
     working_dir: /usr/src/app
     networks:
-      - kevin
+      - dj
     ports:
       - "3000:3000"
 
 networks:
-  kevin:
+  dj:
     driver: bridge

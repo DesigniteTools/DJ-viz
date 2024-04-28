@@ -9,7 +9,7 @@ const port = 3001;
 
 function readFolderStructure(mainFolderPath) {
   const folderNames = fs
-    .readFileSync(`${mainFolderPath}/folders.txt`, "utf8")
+    .readFileSync(`${mainFolderPath}/commits.txt`, "utf8")
     .split("\n");
   return folderNames.map((folderName) => folderName.trim());
 }

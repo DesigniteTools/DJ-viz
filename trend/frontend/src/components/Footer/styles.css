@@ -1,6 +1,6 @@
 .footer {
-  background-color: #333;
-  color: #fff;
+  background-color: #d7dbdd;
+  color: #000000;
   padding: 20px;
   text-align: center;
 }
@@ -16,7 +16,7 @@
 }
 
 .footer-content a {
-  color: #fff;
+  color: #e67e22;
   text-decoration: none;
 }
 
