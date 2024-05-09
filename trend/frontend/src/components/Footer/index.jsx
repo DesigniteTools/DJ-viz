@@ -6,19 +6,13 @@ export default function Footer() {
       <div className="footer-content">
         <p>
           <span>&copy;</span> {new Date().getFullYear()}&nbsp;
-          <a
-            href="https://designite-tools.com/products-dj"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://designite-tools.com/products-dj" target="_blank" rel="noreferrer">
             DesigniteJava
           </a>
           .&nbsp;
-          <a href="https://github.com/DesigniteTools/DJ-viz"
-            target="_blank"
-            rel="noreferrer">
-              Contributors.
-            </a>
+          <a href="https://github.com/DesigniteTools/DJ-viz" target="_blank" rel="noreferrer">
+            Contributors.
+          </a>
         </p>
       </div>
     </footer>
